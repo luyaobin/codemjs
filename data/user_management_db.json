@@ -1,0 +1,563 @@
+{
+  "_tables": {
+    "users": {
+      "1": {
+        "username": "admin",
+        "email": "admin@company.com",
+        "password_hash": "1f5390dc",
+        "salt": "mb5N7ZAN34vBzcxN",
+        "created_at": "2025-05-28T13:51:00.227Z",
+        "updated_at": "2025-05-28T13:51:00.229Z",
+        "user_role": "admin",
+        "profile_data": "{\"nickname\":\"超级管理员\",\"department\":\"IT部门\",\"phone\":\"13800138000\",\"lastUpdated\":\"2025-05-28T13:51:00.229Z\"}",
+        "id": 1,
+        "login_attempts": 5,
+        "is_locked": 1,
+        "is_active": 1
+      }
+    },
+    "user_sessions": {
+      "1": {
+        "user_id": 1,
+        "session_token": "1748440260228_1c7xvsbi5fy",
+        "created_at": "2025-05-28T13:51:00.228Z",
+        "expires_at": "2025-05-28T14:51:00.228Z",
+        "ip_address": "192.168.1.100",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "id": 1,
+        "is_active": 1
+      }
+    },
+    "session_blacklist": {},
+    "user_logs": {
+      "1": {
+        "user_id": null,
+        "action": "系统启动",
+        "details": "{\"timestamp\":\"2025-05-28T13:51:00.226Z\"}",
+        "timestamp": "2025-05-28T13:51:00.226Z",
+        "success": 1,
+        "id": 1
+      },
+      "2": {
+        "user_id": 1,
+        "action": "用户注册",
+        "details": "{\"username\":\"admin\",\"email\":\"admin@company.com\",\"userRole\":\"admin\"}",
+        "timestamp": "2025-05-28T13:51:00.227Z",
+        "success": 1,
+        "id": 2
+      },
+      "3": {
+        "user_id": null,
+        "action": "用户注册失败",
+        "details": "{\"username\":\"alice\",\"email\":\"alice@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T13:51:00.228Z",
+        "success": 0,
+        "id": 3
+      },
+      "4": {
+        "user_id": null,
+        "action": "用户注册失败",
+        "details": "{\"username\":\"bob\",\"email\":\"bob@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T13:51:00.228Z",
+        "success": 0,
+        "id": 4
+      },
+      "5": {
+        "user_id": null,
+        "action": "用户注册失败",
+        "details": "{\"username\":\"charlie\",\"email\":\"charlie@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T13:51:00.228Z",
+        "success": 0,
+        "id": 5
+      },
+      "6": {
+        "user_id": 1,
+        "action": "用户登录",
+        "details": "{\"username\":\"admin\",\"ipAddress\":\"192.168.1.100\"}",
+        "timestamp": "2025-05-28T13:51:00.229Z",
+        "success": 1,
+        "id": 6
+      },
+      "7": {
+        "user_id": 1,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"reason\":\"密码错误\"}",
+        "timestamp": "2025-05-28T13:51:00.229Z",
+        "success": 0,
+        "id": 7
+      },
+      "8": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"error\":\"密码错误\"}",
+        "timestamp": "2025-05-28T13:51:00.229Z",
+        "success": 0,
+        "id": 8
+      },
+      "9": {
+        "user_id": 1,
+        "action": "更新用户信息",
+        "details": "{\"userId\":1,\"updateData\":{\"profileData\":{\"nickname\":\"超级管理员\",\"department\":\"IT部门\",\"phone\":\"13800138000\",\"lastUpdated\":\"2025-05-28T13:51:00.229Z\"}}}",
+        "timestamp": "2025-05-28T13:51:00.230Z",
+        "success": 1,
+        "id": 9
+      },
+      "10": {
+        "user_id": 1,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"reason\":\"密码错误\"}",
+        "timestamp": "2025-05-28T13:51:00.231Z",
+        "success": 0,
+        "id": 10
+      },
+      "11": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"error\":\"密码错误\"}",
+        "timestamp": "2025-05-28T13:51:00.231Z",
+        "success": 0,
+        "id": 11
+      },
+      "12": {
+        "user_id": 1,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"reason\":\"密码错误\"}",
+        "timestamp": "2025-05-28T13:51:00.231Z",
+        "success": 0,
+        "id": 12
+      },
+      "13": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"error\":\"密码错误\"}",
+        "timestamp": "2025-05-28T13:51:00.231Z",
+        "success": 0,
+        "id": 13
+      },
+      "14": {
+        "user_id": 1,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"reason\":\"密码错误\"}",
+        "timestamp": "2025-05-28T13:51:00.231Z",
+        "success": 0,
+        "id": 14
+      },
+      "15": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"error\":\"密码错误\"}",
+        "timestamp": "2025-05-28T13:51:00.231Z",
+        "success": 0,
+        "id": 15
+      },
+      "16": {
+        "user_id": 1,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"reason\":\"密码错误\"}",
+        "timestamp": "2025-05-28T13:51:00.231Z",
+        "success": 0,
+        "id": 16
+      },
+      "17": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"error\":\"密码错误\"}",
+        "timestamp": "2025-05-28T13:51:00.231Z",
+        "success": 0,
+        "id": 17
+      },
+      "18": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"error\":\"账户已被锁定，请联系管理员\"}",
+        "timestamp": "2025-05-28T13:51:00.231Z",
+        "success": 0,
+        "id": 18
+      },
+      "19": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"bob\",\"error\":\"账户已被锁定，请联系管理员\"}",
+        "timestamp": "2025-05-28T13:51:00.231Z",
+        "success": 0,
+        "id": 19
+      },
+      "20": {
+        "user_id": null,
+        "action": "系统启动",
+        "details": "{\"timestamp\":\"2025-05-28T13:51:04.733Z\"}",
+        "timestamp": "2025-05-28T13:51:04.733Z",
+        "success": 1,
+        "id": 20
+      },
+      "21": {
+        "user_id": null,
+        "action": "用户注册失败",
+        "details": "{\"username\":\"admin\",\"email\":\"admin@company.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T13:51:04.734Z",
+        "success": 0,
+        "id": 21
+      },
+      "22": {
+        "user_id": null,
+        "action": "用户注册失败",
+        "details": "{\"username\":\"alice\",\"email\":\"alice@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T13:51:04.735Z",
+        "success": 0,
+        "id": 22
+      },
+      "23": {
+        "user_id": null,
+        "action": "用户注册失败",
+        "details": "{\"username\":\"bob\",\"email\":\"bob@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T13:51:04.735Z",
+        "success": 0,
+        "id": 23
+      },
+      "24": {
+        "user_id": null,
+        "action": "用户注册失败",
+        "details": "{\"username\":\"charlie\",\"email\":\"charlie@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T13:51:04.735Z",
+        "success": 0,
+        "id": 24
+      },
+      "25": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"admin\",\"error\":\"账户已被锁定，请联系管理员\"}",
+        "timestamp": "2025-05-28T13:51:04.735Z",
+        "success": 0,
+        "id": 25
+      },
+      "26": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"error\":\"账户已被锁定，请联系管理员\"}",
+        "timestamp": "2025-05-28T13:51:04.735Z",
+        "success": 0,
+        "id": 26
+      },
+      "27": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"alice\",\"error\":\"账户已被锁定，请联系管理员\"}",
+        "timestamp": "2025-05-28T13:51:04.735Z",
+        "success": 0,
+        "id": 27
+      },
+      "28": {
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"bob\",\"error\":\"账户已被锁定，请联系管理员\"}",
+        "timestamp": "2025-05-28T13:51:04.736Z",
+        "success": 0,
+        "id": 28
+      }
+    }
+  },
+  "_autoIncrement": {
+    "users": 2,
+    "user_sessions": 2,
+    "session_blacklist": 1,
+    "user_logs": 29
+  },
+  "_tableSchemas": {
+    "users": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "username",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "email",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "password_hash",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "salt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "created_at",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "updated_at",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "last_login",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "login_attempts",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": 0,
+        "hasDefault": true
+      },
+      {
+        "name": "is_locked",
+        "type": "BOOLEAN",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": 0,
+        "hasDefault": true
+      },
+      {
+        "name": "is_active",
+        "type": "BOOLEAN",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": 1,
+        "hasDefault": true
+      },
+      {
+        "name": "user_role",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": "user",
+        "hasDefault": true
+      },
+      {
+        "name": "profile_data",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": "{}",
+        "hasDefault": true
+      }
+    ],
+    "user_sessions": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "user_id",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "session_token",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "created_at",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "expires_at",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "is_active",
+        "type": "BOOLEAN",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": 1,
+        "hasDefault": true
+      },
+      {
+        "name": "ip_address",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "user_agent",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "FOREIGN",
+        "type": "KEY",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      }
+    ],
+    "session_blacklist": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "session_token",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "blacklisted_at",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      }
+    ],
+    "user_logs": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "user_id",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "action",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "details",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "ip_address",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "timestamp",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "success",
+        "type": "BOOLEAN",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": 1,
+        "hasDefault": true
+      }
+    ]
+  }
+}
