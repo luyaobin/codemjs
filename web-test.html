@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户管理API测试页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            background: #fafafa;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #4facfe;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #4facfe;
+        }
+
+        button {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border-left: 4px solid #4facfe;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .status.connected {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .token-display {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            word-break: break-all;
+            margin-bottom: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .success {
+            color: #155724;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 用户管理API测试</h1>
+            <p>基于QMLNode的同步用户管理后端接口Web测试工具</p>
+        </div>
+
+        <div class="content">
+            <!-- 连接状态 -->
+            <div id="status" class="status disconnected">
+                🔴 未连接到服务器
+            </div>
+
+            <!-- 会话令牌显示 -->
+            <div id="tokenDisplay" class="token-display" style="display: none;">
+                <strong>当前会话令牌:</strong> <span id="currentToken"></span>
+            </div>
+
+            <div class="grid">
+                <!-- 用户注册 -->
+                <div class="section">
+                    <h2>📝 用户注册</h2>
+                    <div class="form-group">
+                        <label>用户名:</label>
+                        <input type="text" id="regUsername" placeholder="输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label>邮箱:</label>
+                        <input type="email" id="regEmail" placeholder="输入邮箱">
+                    </div>
+                    <div class="form-group">
+                        <label>密码:</label>
+                        <input type="password" id="regPassword" placeholder="输入密码">
+                    </div>
+                    <div class="form-group">
+                        <label>角色:</label>
+                        <select id="regRole">
+                            <option value="user">普通用户</option>
+                            <option value="admin">管理员</option>
+                            <option value="vip">VIP用户</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>昵称:</label>
+                        <input type="text" id="regNickname" placeholder="输入昵称">
+                    </div>
+                    <button onclick="register()">注册用户</button>
+                    <div id="regResponse" class="response" style="display: none;"></div>
+                </div>
+
+                <!-- 用户登录 -->
+                <div class="section">
+                    <h2>🔐 用户登录</h2>
+                    <div class="form-group">
+                        <label>用户名/邮箱:</label>
+                        <input type="text" id="loginUsername" placeholder="输入用户名或邮箱">
+                    </div>
+                    <div class="form-group">
+                        <label>密码:</label>
+                        <input type="password" id="loginPassword" placeholder="输入密码">
+                    </div>
+                    <button onclick="login()">登录</button>
+                    <button onclick="logout()">登出</button>
+                    <div id="loginResponse" class="response" style="display: none;"></div>
+                </div>
+
+                <!-- 会话管理 -->
+                <div class="section">
+                    <h2>🔍 会话管理</h2>
+                    <button onclick="validateSession()">验证会话</button>
+                    <button onclick="checkHealth()">健康检查</button>
+                    <button onclick="getApiDocs()">获取API文档</button>
+                    <div id="sessionResponse" class="response" style="display: none;"></div>
+                </div>
+
+                <!-- 用户管理 -->
+                <div class="section">
+                    <h2>👥 用户管理</h2>
+                    <div class="form-group">
+                        <label>用户ID:</label>
+                        <input type="number" id="userId" placeholder="输入用户ID">
+                    </div>
+                    <div class="form-group">
+                        <label>新邮箱:</label>
+                        <input type="email" id="newEmail" placeholder="输入新邮箱">
+                    </div>
+                    <div class="form-group">
+                        <label>新昵称:</label>
+                        <input type="text" id="newNickname" placeholder="输入新昵称">
+                    </div>
+                    <button onclick="updateUser()">更新用户</button>
+                    <button onclick="deleteUser()">删除用户</button>
+                    <div id="userResponse" class="response" style="display: none;"></div>
+                </div>
+
+                <!-- 管理员功能 -->
+                <div class="section">
+                    <h2>👑 管理员功能</h2>
+                    <div class="form-group">
+                        <label>页码:</label>
+                        <input type="number" id="page" value="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>每页数量:</label>
+                        <input type="number" id="pageSize" value="10" min="1" max="100">
+                    </div>
+                    <button onclick="getUserList()">获取用户列表</button>
+                    <button onclick="getLogs()">获取操作日志</button>
+                    <div id="adminResponse" class="response" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+        let sessionToken = null;
+
+        // 检查服务器连接状态
+        async function checkServerStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                if (response.ok) {
+                    document.getElementById('status').className = 'status connected';
+                    document.getElementById('status').innerHTML = '🟢 已连接到服务器';
+                    return true;
+                }
+            } catch (error) {
+                document.getElementById('status').className = 'status disconnected';
+                document.getElementById('status').innerHTML = '🔴 无法连接到服务器';
+                return false;
+            }
+        }
+
+        // 发送API请求
+        async function apiRequest(method, path, data = null) {
+            const headers = {
+                'Content-Type': 'application/json'
+            };
+
+            if (sessionToken) {
+                headers['X-Session-Token'] = sessionToken;
+            }
+
+            const options = {
+                method,
+                headers
+            };
+
+            if (data) {
+                options.body = JSON.stringify(data);
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}${path}`, options);
+                const result = await response.json();
+                return {
+                    statusCode: response.status,
+                    data: result
+                };
+            } catch (error) {
+                return {
+                    statusCode: 0,
+                    data: { success: false, message: '网络错误: ' + error.message }
+                };
+            }
+        }
+
+        // 显示响应结果
+        function showResponse(elementId, response) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.textContent = `状态码: ${response.statusCode}\n\n${JSON.stringify(response.data, null, 2)}`;
+            
+            if (response.data.success) {
+                element.style.borderLeftColor = '#28a745';
+            } else {
+                element.style.borderLeftColor = '#dc3545';
+            }
+        }
+
+        // 更新会话令牌显示
+        function updateTokenDisplay() {
+            const tokenDisplay = document.getElementById('tokenDisplay');
+            const currentToken = document.getElementById('currentToken');
+            
+            if (sessionToken) {
+                tokenDisplay.style.display = 'block';
+                currentToken.textContent = sessionToken;
+            } else {
+                tokenDisplay.style.display = 'none';
+            }
+        }
+
+        // 用户注册
+        async function register() {
+            const data = {
+                username: document.getElementById('regUsername').value,
+                email: document.getElementById('regEmail').value,
+                password: document.getElementById('regPassword').value,
+                userRole: document.getElementById('regRole').value,
+                profileData: {
+                    nickname: document.getElementById('regNickname').value
+                }
+            };
+
+            const response = await apiRequest('POST', '/api/register', data);
+            showResponse('regResponse', response);
+        }
+
+        // 用户登录
+        async function login() {
+            const data = {
+                username: document.getElementById('loginUsername').value,
+                password: document.getElementById('loginPassword').value,
+                ipAddress: '127.0.0.1',
+                userAgent: 'WebTestClient/1.0'
+            };
+
+            const response = await apiRequest('POST', '/api/login', data);
+            showResponse('loginResponse', response);
+
+            if (response.data.success && response.data.data.sessionToken) {
+                sessionToken = response.data.data.sessionToken;
+                updateTokenDisplay();
+            }
+        }
+
+        // 用户登出
+        async function logout() {
+            const response = await apiRequest('POST', '/api/logout');
+            showResponse('loginResponse', response);
+
+            if (response.data.success) {
+                sessionToken = null;
+                updateTokenDisplay();
+            }
+        }
+
+        // 验证会话
+        async function validateSession() {
+            const response = await apiRequest('GET', '/api/session');
+            showResponse('sessionResponse', response);
+        }
+
+        // 健康检查
+        async function checkHealth() {
+            const response = await apiRequest('GET', '/health');
+            showResponse('sessionResponse', response);
+        }
+
+        // 获取API文档
+        async function getApiDocs() {
+            const response = await apiRequest('GET', '/api/docs');
+            showResponse('sessionResponse', response);
+        }
+
+        // 更新用户信息
+        async function updateUser() {
+            const userId = document.getElementById('userId').value;
+            const data = {
+                email: document.getElementById('newEmail').value,
+                profileData: {
+                    nickname: document.getElementById('newNickname').value
+                }
+            };
+
+            const response = await apiRequest('PUT', `/api/users/${userId}`, data);
+            showResponse('userResponse', response);
+        }
+
+        // 删除用户
+        async function deleteUser() {
+            const userId = document.getElementById('userId').value;
+            if (!confirm(`确定要删除用户ID ${userId} 吗？`)) {
+                return;
+            }
+
+            const response = await apiRequest('DELETE', `/api/users/${userId}`);
+            showResponse('userResponse', response);
+        }
+
+        // 获取用户列表
+        async function getUserList() {
+            const page = document.getElementById('page').value;
+            const pageSize = document.getElementById('pageSize').value;
+            
+            const response = await apiRequest('GET', `/api/users?page=${page}&pageSize=${pageSize}`);
+            showResponse('adminResponse', response);
+        }
+
+        // 获取操作日志
+        async function getLogs() {
+            const page = document.getElementById('page').value;
+            const pageSize = document.getElementById('pageSize').value;
+            
+            const response = await apiRequest('GET', `/api/logs?page=${page}&pageSize=${pageSize}`);
+            showResponse('adminResponse', response);
+        }
+
+        // 页面加载时检查服务器状态
+        window.onload = function() {
+            checkServerStatus();
+            setInterval(checkServerStatus, 5000); // 每5秒检查一次连接状态
+        };
+    </script>
+</body>
+</html>

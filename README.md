@@ -1,362 +1,335 @@
-# 用户管理API - 基于QMLNode的同步后端接口
+# 用户管理API - 同步编程风格
 
-这是一个基于QMLNode的完整用户账号管理后端接口系统，采用同步编程风格，提供用户注册、登录、会话管理、权限控制等功能。
+基于QMLNode的同步编程风格用户管理后端接口，支持用户注册、登录、会话管理、权限控制等功能。
 
-## 🚀 特性
+## 🚀 快速开始
 
-- **完整的用户管理** - 注册、登录、登出、删除用户
-- **会话管理** - 安全的会话令牌系统，支持过期控制
-- **权限控制** - 基于角色的权限管理（用户/管理员）
-- **安全功能** - 密码哈希、登录失败锁定、会话验证
-- **操作日志** - 完整的用户操作记录和审计
-- **同步编程** - 所有操作都采用同步方式，适合QML集成
-- **数据持久化** - 基于QMLNode的本地数据库存储
-
-## 📦 安装和运行
-
-### 1. 安装依赖
-
+### 安装依赖
 ```bash
 npm install
 ```
 
-### 2. 运行主应用
+### 运行方式
 
+#### 1. 直接使用API（同步方式）
 ```bash
+# 运行基本API
 npm start
-```
 
-### 3. 运行测试
-
-```bash
+# 运行测试
 npm test
+
+# 运行示例
+npm example
 ```
 
-### 4. 运行示例演示
-
+#### 2. Web服务器（HTTP接口）
 ```bash
-npm run example
+# 启动Web服务器
+npm run web
+
+# 在另一个终端测试Web API
+npm run web-test
 ```
 
-## 🔧 API接口
+#### 3. 使用curl测试
+```bash
+# 确保Web服务器正在运行
+npm run web
 
-### 用户注册
+# 在另一个终端运行curl测试
+bash curl-test.sh
+```
 
-```javascript
-import userAPI from './app.mjs';
+#### 4. 使用Web界面测试
+```bash
+# 启动Web服务器
+npm run web
 
-const result = userAPI.register({
-    username: 'testuser',
-    email: 'test@example.com',
-    password: 'password123',
-    userRole: 'user', // 可选: 'user' | 'admin' | 'vip'
-    profileData: {    // 可选: 用户资料
-        nickname: '测试用户',
-        age: 25,
-        city: '北京'
-    }
-});
+# 在浏览器中打开
+open web-test.html
+# 或访问 http://localhost:3000（会自动重定向到API文档）
+```
 
-if (result.success) {
-    console.log('注册成功:', result.data);
-    // result.data 包含: userId, username, email, userRole, createdAt
-} else {
-    console.log('注册失败:', result.message);
+## � Web API接口
+
+### 基础信息
+- **服务地址**: `http://localhost:3000`
+- **API前缀**: `/api`
+- **认证方式**: 会话令牌（Header: `X-Session-Token`）
+
+### 接口列表
+
+#### 用户注册
+```http
+POST /api/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "password123",
+  "userRole": "user",
+  "profileData": {
+    "nickname": "测试用户"
+  }
 }
 ```
 
-### 用户登录
+#### 用户登录
+```http
+POST /api/login
+Content-Type: application/json
 
-```javascript
-const result = userAPI.login({
-    username: 'testuser',     // 用户名或邮箱
-    password: 'password123',
-    ipAddress: '127.0.0.1',   // 可选
-    userAgent: 'Browser'      // 可选
-});
-
-if (result.success) {
-    console.log('登录成功:', result.data);
-    // result.data 包含: userId, username, email, userRole, sessionToken, expiresAt, profileData
-    const sessionToken = result.data.sessionToken;
-} else {
-    console.log('登录失败:', result.message);
+{
+  "username": "testuser",
+  "password": "password123",
+  "ipAddress": "127.0.0.1",
+  "userAgent": "MyApp/1.0"
 }
 ```
 
-### 验证会话
+#### 验证会话
+```http
+GET /api/session
+X-Session-Token: your_session_token
+```
 
-```javascript
-const result = userAPI.validateSession(sessionToken);
+#### 用户登出
+```http
+POST /api/logout
+X-Session-Token: your_session_token
+```
 
-if (result.success) {
-    console.log('会话有效:', result.data);
-    // 可以获取当前用户信息
-} else {
-    console.log('会话无效:', result.message);
-    // 需要重新登录
+#### 更新用户信息
+```http
+PUT /api/users/{userId}
+X-Session-Token: your_session_token
+Content-Type: application/json
+
+{
+  "email": "newemail@example.com",
+  "profileData": {
+    "nickname": "新昵称"
+  }
 }
 ```
 
-### 用户登出
-
-```javascript
-const result = userAPI.logout(sessionToken);
-
-if (result.success) {
-    console.log('登出成功');
-} else {
-    console.log('登出失败:', result.message);
-}
+#### 删除用户
+```http
+DELETE /api/users/{userId}
+X-Session-Token: your_session_token
 ```
 
-### 更新用户信息
-
-```javascript
-const result = userAPI.updateUser(userId, {
-    email: 'newemail@example.com',
-    profileData: {
-        nickname: '新昵称',
-        age: 26
-    }
-    // 管理员还可以更新: userRole, isActive
-}, sessionToken);
-
-if (result.success) {
-    console.log('更新成功');
-} else {
-    console.log('更新失败:', result.message);
-}
+#### 获取用户列表（管理员）
+```http
+GET /api/users?page=1&pageSize=10
+X-Session-Token: admin_session_token
 ```
 
-### 删除用户
-
-```javascript
-// 用户可以删除自己的账户，管理员可以删除任何用户
-const result = userAPI.deleteUser(userId, operatorSessionToken);
-
-if (result.success) {
-    console.log('删除成功:', result.data);
-} else {
-    console.log('删除失败:', result.message);
-}
+#### 获取操作日志（管理员）
+```http
+GET /api/logs?page=1&pageSize=20&userId=1
+X-Session-Token: admin_session_token
 ```
 
-### 管理员功能
-
-#### 获取用户列表
-
-```javascript
-// 需要管理员权限
-const result = userAPI.getUserList(adminSessionToken, page = 1, pageSize = 10);
-
-if (result.success) {
-    console.log('用户列表:', result.data.users);
-    console.log('分页信息:', result.data.pagination);
-} else {
-    console.log('获取失败:', result.message);
-}
+#### 健康检查
+```http
+GET /health
 ```
 
-#### 获取操作日志
-
-```javascript
-// 需要管理员权限
-const result = userAPI.getLogs(adminSessionToken, page = 1, pageSize = 20, userId = null);
-
-if (result.success) {
-    console.log('操作日志:', result.data.logs);
-} else {
-    console.log('获取失败:', result.message);
-}
+#### API文档
+```http
+GET /api/docs
 ```
 
-## 🔒 安全特性
+## � 核心功能
 
-### 1. 密码安全
-- 使用盐值哈希存储密码
-- 支持密码长度限制（默认6位）
-- 生产环境建议使用更强的哈希算法
+### 用户管理
+- ✅ 用户注册（支持角色：user/admin/vip）
+- ✅ 用户登录/登出
+- ✅ 密码哈希+盐值存储
+- ✅ 会话管理（令牌过期控制）
+- ✅ 用户信息更新
+- ✅ 用户删除
+- ✅ 登录失败次数限制
+- ✅ 账户锁定机制
 
-### 2. 登录保护
-- 登录失败次数限制（默认5次）
-- 账户自动锁定机制
-- IP地址和User-Agent记录
+### 权限控制
+- ✅ 基于角色的权限控制
+- ✅ 管理员功能（用户列表、日志查看）
+- ✅ 用户只能修改自己的信息
+- ✅ 会话令牌验证
 
-### 3. 会话管理
-- 安全的会话令牌生成
-- 会话过期时间控制（默认1小时）
-- 自动清理过期会话
+### 数据持久化
+- ✅ 基于QMLNode的同步数据库操作
+- ✅ 自动数据持久化
+- ✅ 配置文件管理
+- ✅ 操作日志记录
 
-### 4. 权限控制
-- 基于角色的访问控制
-- 用户只能操作自己的数据
-- 管理员拥有完整权限
+### Web功能
+- ✅ HTTP RESTful API
+- ✅ CORS支持
+- ✅ JSON响应格式
+- ✅ 错误处理
+- ✅ 请求日志
+- ✅ 优雅关闭
 
 ## 📊 数据库结构
 
-### 用户表 (users)
-```sql
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE NOT NULL,
-    email TEXT UNIQUE NOT NULL,
-    password_hash TEXT NOT NULL,
-    salt TEXT NOT NULL,
-    created_at TEXT NOT NULL,
-    updated_at TEXT NOT NULL,
-    last_login TEXT,
-    login_attempts INTEGER DEFAULT 0,
-    is_locked BOOLEAN DEFAULT 0,
-    is_active BOOLEAN DEFAULT 1,
-    user_role TEXT DEFAULT 'user',
-    profile_data TEXT DEFAULT '{}'
-);
-```
+### users表
+- `id`: 用户ID（主键）
+- `username`: 用户名（唯一）
+- `email`: 邮箱（唯一）
+- `passwordHash`: 密码哈希
+- `salt`: 密码盐值
+- `userRole`: 用户角色
+- `isActive`: 是否激活
+- `failedLoginAttempts`: 登录失败次数
+- `lockedUntil`: 锁定到期时间
+- `profileData`: 用户资料（JSON）
+- `createdAt`: 创建时间
+- `lastLoginAt`: 最后登录时间
 
-### 会话表 (user_sessions)
-```sql
-CREATE TABLE user_sessions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    session_token TEXT UNIQUE NOT NULL,
-    created_at TEXT NOT NULL,
-    expires_at TEXT NOT NULL,
-    is_active BOOLEAN DEFAULT 1,
-    ip_address TEXT,
-    user_agent TEXT,
-    FOREIGN KEY (user_id) REFERENCES users (id)
-);
-```
+### user_sessions表
+- `id`: 会话ID（主键）
+- `userId`: 用户ID
+- `sessionToken`: 会话令牌
+- `expiresAt`: 过期时间
+- `ipAddress`: IP地址
+- `userAgent`: 用户代理
+- `createdAt`: 创建时间
 
-### 日志表 (user_logs)
-```sql
-CREATE TABLE user_logs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
-    action TEXT NOT NULL,
-    details TEXT,
-    ip_address TEXT,
-    timestamp TEXT NOT NULL,
-    success BOOLEAN DEFAULT 1
-);
-```
+### session_blacklist表
+- `id`: 黑名单ID（主键）
+- `sessionToken`: 失效的会话令牌
+- `createdAt`: 创建时间
 
-## ⚙️ 配置选项
+### user_logs表
+- `id`: 日志ID（主键）
+- `userId`: 用户ID
+- `action`: 操作类型
+- `details`: 操作详情
+- `ipAddress`: IP地址
+- `userAgent`: 用户代理
+- `createdAt`: 创建时间
 
-系统会自动创建配置文件 `data/user_api_config.ini`：
+## 🛠️ 开发工具
 
-```ini
-[default]
-maxLoginAttempts=5
-sessionTimeout=3600000
-passwordMinLength=6
-enableLogging=true
-```
-
-可以通过代码修改配置：
-
-```javascript
-// 获取配置
-const maxAttempts = userAPI.settings.value('maxLoginAttempts');
-
-// 设置配置
-userAPI.settings.setValue('passwordMinLength', 8);
-```
-
-## 🧪 测试
-
-项目包含完整的测试套件：
-
+### 可用脚本
 ```bash
-# 运行所有测试
-npm test
-
-# 运行示例演示
-npm run example
+npm start          # 运行基本API
+npm test           # 运行测试套件
+npm example        # 运行使用示例
+npm run web        # 启动Web服务器
+npm run web-test   # 运行Web客户端测试
+npm run dev        # 调试模式运行
+npm run clean      # 清理数据库
 ```
 
-测试覆盖：
-- ✅ 用户注册（正常/异常情况）
-- ✅ 用户登录（正常/错误密码/不存在用户）
-- ✅ 会话验证（有效/无效/过期）
-- ✅ 用户信息更新
-- ✅ 权限控制测试
-- ✅ 管理员功能测试
-- ✅ 安全功能测试
-- ✅ 错误处理测试
+### 测试工具
+- `test-user-api.mjs`: 完整测试套件
+- `web-client-test.mjs`: Web API测试
+- `curl-test.sh`: curl命令行测试
+- `web-test.html`: 浏览器界面测试
 
-## 📁 项目结构
+## 🔒 安全特性
 
-```
-codemjs/
-├── app.mjs                 # 主应用文件 - 用户管理API
-├── test-user-api.mjs       # 完整测试套件
-├── user-api-example.mjs    # 使用示例演示
-├── package.json            # 项目配置
-├── README.md              # 项目文档
-├── data/                  # 数据存储目录
-│   ├── user_management_db.json  # 用户数据库
-│   └── user_api_config.ini      # 配置文件
-└── logs/                  # 日志目录
-    └── *.log             # 操作日志文件
-```
+- **密码安全**: 使用哈希+盐值存储密码
+- **会话管理**: 令牌过期控制，登出黑名单机制
+- **登录保护**: 失败次数限制，账户锁定
+- **权限控制**: 基于角色的访问控制
+- **操作审计**: 完整的操作日志记录
+- **输入验证**: 参数验证和错误处理
 
-## � 与QML集成
+## 📝 使用示例
 
-这个API专为QML应用设计，可以直接在QML中调用：
+### JavaScript/Node.js客户端
+```javascript
+import UserManagementWebClient from './web-client-test.mjs';
 
-```qml
-// QML中使用示例
-import QtQuick 2.15
+const client = new UserManagementWebClient('http://localhost:3000');
 
-Item {
-    Component.onCompleted: {
-        // 注册用户
-        var result = userAPI.register({
-            username: "qmluser",
-            email: "qml@example.com",
-            password: "qmlpass123"
-        });
-        
-        if (result.success) {
-            console.log("QML用户注册成功");
-            
-            // 登录
-            var loginResult = userAPI.login({
-                username: "qmluser",
-                password: "qmlpass123"
-            });
-            
-            if (loginResult.success) {
-                // 保存会话令牌
-                sessionToken = loginResult.data.sessionToken;
-            }
-        }
-    }
-}
+// 注册用户
+await client.register({
+  username: 'testuser',
+  email: 'test@example.com',
+  password: 'password123'
+});
+
+// 登录
+await client.login({
+  username: 'testuser',
+  password: 'password123'
+});
+
+// 验证会话
+await client.validateSession();
 ```
 
-## 🚨 注意事项
+### curl命令示例
+```bash
+# 注册用户
+curl -X POST http://localhost:3000/api/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"test","email":"test@example.com","password":"123456"}'
 
-1. **生产环境安全**：
-   - 建议使用更强的密码哈希算法（如bcrypt）
-   - 启用HTTPS传输
-   - 定期更新会话令牌
+# 登录
+curl -X POST http://localhost:3000/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"test","password":"123456"}'
 
-2. **性能考虑**：
-   - 同步操作适合中小规模应用
-   - 大量并发时考虑异步版本
+# 验证会话
+curl -X GET http://localhost:3000/api/session \
+  -H "X-Session-Token: your_token_here"
+```
 
-3. **数据备份**：
-   - 定期备份用户数据
-   - 监控日志文件大小
+## 🌐 部署说明
+
+### 本地开发
+```bash
+# 启动Web服务器
+npm run web
+
+# 服务器将在 http://localhost:3000 启动
+```
+
+### 生产环境
+```bash
+# 设置端口
+export PORT=8080
+
+# 启动服务器
+npm run web
+```
+
+### Docker部署
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "run", "web"]
+```
+
+## 🤝 技术栈
+
+- **运行时**: Node.js 14+
+- **数据库**: QMLNode LocalStorage（同步）
+- **Web服务器**: Node.js http模块
+- **认证**: 会话令牌
+- **安全**: 密码哈希、盐值、会话管理
+- **测试**: 自定义测试套件
 
 ## 📄 许可证
 
 MIT License
 
-## 🤝 贡献
+## 🔗 相关链接
 
-欢迎提交Issue和Pull Request来改进这个项目！
+- [QMLNode文档](./qmlnode-1.0.0.tgz)
+- [API文档](http://localhost:3000/api/docs)
+- [健康检查](http://localhost:3000/health)
 

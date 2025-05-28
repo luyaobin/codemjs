@@ -2,273 +2,199 @@
   "_tables": {
     "users": {
       "1": {
-        "username": "admin",
-        "email": "admin@company.com",
-        "password_hash": "1f5390dc",
-        "salt": "mb5N7ZAN34vBzcxN",
-        "created_at": "2025-05-28T13:51:00.227Z",
-        "updated_at": "2025-05-28T13:51:00.229Z",
+        "username": "webadmin",
+        "email": "webadmin@example.com",
+        "password_hash": "2441d06d",
+        "salt": "D3gFKqRzmJkcPfUO",
+        "created_at": "2025-05-28T14:51:31.506Z",
+        "updated_at": "2025-05-28T14:51:31.514Z",
         "user_role": "admin",
-        "profile_data": "{\"nickname\":\"超级管理员\",\"department\":\"IT部门\",\"phone\":\"13800138000\",\"lastUpdated\":\"2025-05-28T13:51:00.229Z\"}",
+        "profile_data": "{\"nickname\":\"超级Web管理员\",\"department\":\"IT部门\",\"phone\":\"13800138000\",\"lastUpdated\":\"2025-05-28T14:51:31.513Z\"}",
         "id": 1,
-        "login_attempts": 5,
-        "is_locked": 1,
+        "login_attempts": 4,
+        "is_locked": 0,
         "is_active": 1
       }
     },
     "user_sessions": {
       "1": {
         "user_id": 1,
-        "session_token": "1748440260228_1c7xvsbi5fy",
-        "created_at": "2025-05-28T13:51:00.228Z",
-        "expires_at": "2025-05-28T14:51:00.228Z",
-        "ip_address": "192.168.1.100",
-        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "session_token": "1748443891510_ufycxi3oo38",
+        "created_at": "2025-05-28T14:51:31.510Z",
+        "expires_at": "2025-05-28T15:51:31.510Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "WebClient/1.0",
         "id": 1,
         "is_active": 1
       }
     },
-    "session_blacklist": {},
+    "session_blacklist": {
+      "1": {
+        "session_token": "1748443891510_ufycxi3oo38",
+        "blacklisted_at": "2025-05-28T14:51:31.519Z",
+        "id": 1
+      }
+    },
     "user_logs": {
       "1": {
         "user_id": null,
         "action": "系统启动",
-        "details": "{\"timestamp\":\"2025-05-28T13:51:00.226Z\"}",
-        "timestamp": "2025-05-28T13:51:00.226Z",
+        "details": "{\"timestamp\":\"2025-05-28T14:51:27.973Z\"}",
+        "timestamp": "2025-05-28T14:51:27.973Z",
         "success": 1,
         "id": 1
       },
       "2": {
         "user_id": 1,
         "action": "用户注册",
-        "details": "{\"username\":\"admin\",\"email\":\"admin@company.com\",\"userRole\":\"admin\"}",
-        "timestamp": "2025-05-28T13:51:00.227Z",
+        "details": "{\"username\":\"webadmin\",\"email\":\"webadmin@example.com\",\"userRole\":\"admin\"}",
+        "timestamp": "2025-05-28T14:51:31.506Z",
         "success": 1,
         "id": 2
       },
       "3": {
         "user_id": null,
         "action": "用户注册失败",
-        "details": "{\"username\":\"alice\",\"email\":\"alice@example.com\",\"error\":\"用户名或邮箱已存在\"}",
-        "timestamp": "2025-05-28T13:51:00.228Z",
+        "details": "{\"username\":\"webuser\",\"email\":\"webuser@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T14:51:31.508Z",
         "success": 0,
         "id": 3
       },
       "4": {
-        "user_id": null,
-        "action": "用户注册失败",
-        "details": "{\"username\":\"bob\",\"email\":\"bob@example.com\",\"error\":\"用户名或邮箱已存在\"}",
-        "timestamp": "2025-05-28T13:51:00.228Z",
-        "success": 0,
+        "user_id": 1,
+        "action": "用户登录",
+        "details": "{\"username\":\"webadmin\",\"ipAddress\":\"127.0.0.1\"}",
+        "timestamp": "2025-05-28T14:51:31.510Z",
+        "success": 1,
         "id": 4
       },
       "5": {
-        "user_id": null,
-        "action": "用户注册失败",
-        "details": "{\"username\":\"charlie\",\"email\":\"charlie@example.com\",\"error\":\"用户名或邮箱已存在\"}",
-        "timestamp": "2025-05-28T13:51:00.228Z",
-        "success": 0,
+        "user_id": 1,
+        "action": "更新用户信息",
+        "details": "{\"userId\":1,\"updateData\":{\"profileData\":{\"nickname\":\"超级Web管理员\",\"department\":\"IT部门\",\"phone\":\"13800138000\",\"lastUpdated\":\"2025-05-28T14:51:31.513Z\"}}}",
+        "timestamp": "2025-05-28T14:51:31.514Z",
+        "success": 1,
         "id": 5
       },
       "6": {
         "user_id": 1,
-        "action": "用户登录",
-        "details": "{\"username\":\"admin\",\"ipAddress\":\"192.168.1.100\"}",
-        "timestamp": "2025-05-28T13:51:00.229Z",
+        "action": "用户登出",
+        "details": "{\"sessionToken\":\"1748443891510_ufycxi3oo38\"}",
+        "timestamp": "2025-05-28T14:51:31.519Z",
         "success": 1,
         "id": 6
       },
       "7": {
-        "user_id": 1,
-        "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"reason\":\"密码错误\"}",
-        "timestamp": "2025-05-28T13:51:00.229Z",
+        "user_id": null,
+        "action": "用户注册失败",
+        "details": "{\"username\":\"curlAdmin\",\"email\":\"curl@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T14:53:40.372Z",
         "success": 0,
         "id": 7
       },
       "8": {
-        "user_id": null,
+        "user_id": 1,
         "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"error\":\"密码错误\"}",
-        "timestamp": "2025-05-28T13:51:00.229Z",
+        "details": "{\"username\":\"curlAdmin\",\"reason\":\"密码错误\"}",
+        "timestamp": "2025-05-28T14:53:40.377Z",
         "success": 0,
         "id": 8
       },
       "9": {
-        "user_id": 1,
-        "action": "更新用户信息",
-        "details": "{\"userId\":1,\"updateData\":{\"profileData\":{\"nickname\":\"超级管理员\",\"department\":\"IT部门\",\"phone\":\"13800138000\",\"lastUpdated\":\"2025-05-28T13:51:00.229Z\"}}}",
-        "timestamp": "2025-05-28T13:51:00.230Z",
-        "success": 1,
+        "user_id": null,
+        "action": "登录失败",
+        "details": "{\"username\":\"curlAdmin\",\"error\":\"密码错误\"}",
+        "timestamp": "2025-05-28T14:53:40.377Z",
+        "success": 0,
         "id": 9
       },
       "10": {
-        "user_id": 1,
-        "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"reason\":\"密码错误\"}",
-        "timestamp": "2025-05-28T13:51:00.231Z",
+        "user_id": null,
+        "action": "用户注册失败",
+        "details": "{\"username\":\"curlAdmin\",\"email\":\"curl@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T14:54:36.914Z",
         "success": 0,
         "id": 10
       },
       "11": {
-        "user_id": null,
+        "user_id": 1,
         "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"error\":\"密码错误\"}",
-        "timestamp": "2025-05-28T13:51:00.231Z",
+        "details": "{\"username\":\"curlAdmin\",\"reason\":\"密码错误\"}",
+        "timestamp": "2025-05-28T14:54:36.919Z",
         "success": 0,
         "id": 11
       },
       "12": {
-        "user_id": 1,
+        "user_id": null,
         "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"reason\":\"密码错误\"}",
-        "timestamp": "2025-05-28T13:51:00.231Z",
+        "details": "{\"username\":\"curlAdmin\",\"error\":\"密码错误\"}",
+        "timestamp": "2025-05-28T14:54:36.919Z",
         "success": 0,
         "id": 12
       },
       "13": {
         "user_id": null,
-        "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"error\":\"密码错误\"}",
-        "timestamp": "2025-05-28T13:51:00.231Z",
+        "action": "用户注册失败",
+        "details": "{\"username\":\"curlAdmin\",\"email\":\"curl@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T14:54:45.686Z",
         "success": 0,
         "id": 13
       },
       "14": {
         "user_id": 1,
         "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"reason\":\"密码错误\"}",
-        "timestamp": "2025-05-28T13:51:00.231Z",
+        "details": "{\"username\":\"curlAdmin\",\"reason\":\"密码错误\"}",
+        "timestamp": "2025-05-28T14:54:45.691Z",
         "success": 0,
         "id": 14
       },
       "15": {
         "user_id": null,
         "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"error\":\"密码错误\"}",
-        "timestamp": "2025-05-28T13:51:00.231Z",
+        "details": "{\"username\":\"curlAdmin\",\"error\":\"密码错误\"}",
+        "timestamp": "2025-05-28T14:54:45.691Z",
         "success": 0,
         "id": 15
       },
       "16": {
-        "user_id": 1,
-        "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"reason\":\"密码错误\"}",
-        "timestamp": "2025-05-28T13:51:00.231Z",
-        "success": 0,
+        "user_id": null,
+        "action": "系统启动",
+        "details": "{\"timestamp\":\"2025-05-28T14:54:54.881Z\"}",
+        "timestamp": "2025-05-28T14:54:54.881Z",
+        "success": 1,
         "id": 16
       },
       "17": {
         "user_id": null,
-        "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"error\":\"密码错误\"}",
-        "timestamp": "2025-05-28T13:51:00.231Z",
+        "action": "用户注册失败",
+        "details": "{\"username\":\"curlAdmin\",\"email\":\"curl@example.com\",\"error\":\"用户名或邮箱已存在\"}",
+        "timestamp": "2025-05-28T14:55:01.072Z",
         "success": 0,
         "id": 17
       },
       "18": {
-        "user_id": null,
+        "user_id": 1,
         "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"error\":\"账户已被锁定，请联系管理员\"}",
-        "timestamp": "2025-05-28T13:51:00.231Z",
+        "details": "{\"username\":\"curlAdmin\",\"reason\":\"密码错误\"}",
+        "timestamp": "2025-05-28T14:55:01.078Z",
         "success": 0,
         "id": 18
       },
       "19": {
         "user_id": null,
         "action": "登录失败",
-        "details": "{\"username\":\"bob\",\"error\":\"账户已被锁定，请联系管理员\"}",
-        "timestamp": "2025-05-28T13:51:00.231Z",
+        "details": "{\"username\":\"curlAdmin\",\"error\":\"密码错误\"}",
+        "timestamp": "2025-05-28T14:55:01.078Z",
         "success": 0,
         "id": 19
-      },
-      "20": {
-        "user_id": null,
-        "action": "系统启动",
-        "details": "{\"timestamp\":\"2025-05-28T13:51:04.733Z\"}",
-        "timestamp": "2025-05-28T13:51:04.733Z",
-        "success": 1,
-        "id": 20
-      },
-      "21": {
-        "user_id": null,
-        "action": "用户注册失败",
-        "details": "{\"username\":\"admin\",\"email\":\"admin@company.com\",\"error\":\"用户名或邮箱已存在\"}",
-        "timestamp": "2025-05-28T13:51:04.734Z",
-        "success": 0,
-        "id": 21
-      },
-      "22": {
-        "user_id": null,
-        "action": "用户注册失败",
-        "details": "{\"username\":\"alice\",\"email\":\"alice@example.com\",\"error\":\"用户名或邮箱已存在\"}",
-        "timestamp": "2025-05-28T13:51:04.735Z",
-        "success": 0,
-        "id": 22
-      },
-      "23": {
-        "user_id": null,
-        "action": "用户注册失败",
-        "details": "{\"username\":\"bob\",\"email\":\"bob@example.com\",\"error\":\"用户名或邮箱已存在\"}",
-        "timestamp": "2025-05-28T13:51:04.735Z",
-        "success": 0,
-        "id": 23
-      },
-      "24": {
-        "user_id": null,
-        "action": "用户注册失败",
-        "details": "{\"username\":\"charlie\",\"email\":\"charlie@example.com\",\"error\":\"用户名或邮箱已存在\"}",
-        "timestamp": "2025-05-28T13:51:04.735Z",
-        "success": 0,
-        "id": 24
-      },
-      "25": {
-        "user_id": null,
-        "action": "登录失败",
-        "details": "{\"username\":\"admin\",\"error\":\"账户已被锁定，请联系管理员\"}",
-        "timestamp": "2025-05-28T13:51:04.735Z",
-        "success": 0,
-        "id": 25
-      },
-      "26": {
-        "user_id": null,
-        "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"error\":\"账户已被锁定，请联系管理员\"}",
-        "timestamp": "2025-05-28T13:51:04.735Z",
-        "success": 0,
-        "id": 26
-      },
-      "27": {
-        "user_id": null,
-        "action": "登录失败",
-        "details": "{\"username\":\"alice\",\"error\":\"账户已被锁定，请联系管理员\"}",
-        "timestamp": "2025-05-28T13:51:04.735Z",
-        "success": 0,
-        "id": 27
-      },
-      "28": {
-        "user_id": null,
-        "action": "登录失败",
-        "details": "{\"username\":\"bob\",\"error\":\"账户已被锁定，请联系管理员\"}",
-        "timestamp": "2025-05-28T13:51:04.736Z",
-        "success": 0,
-        "id": 28
-      },
-      "29": {
-        "user_id": null,
-        "action": "系统启动",
-        "details": "{\"timestamp\":\"2025-05-28T14:22:53.346Z\"}",
-        "timestamp": "2025-05-28T14:22:53.347Z",
-        "success": 1,
-        "id": 29
       }
     }
   },
   "_autoIncrement": {
     "users": 2,
     "user_sessions": 2,
-    "session_blacklist": 1,
-    "user_logs": 30
+    "session_blacklist": 2,
+    "user_logs": 20
   },
   "_tableSchemas": {
     "users": [
