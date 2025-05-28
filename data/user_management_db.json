@@ -253,6 +253,14 @@
         "timestamp": "2025-05-28T13:51:04.736Z",
         "success": 0,
         "id": 28
+      },
+      "29": {
+        "user_id": null,
+        "action": "系统启动",
+        "details": "{\"timestamp\":\"2025-05-28T14:22:53.346Z\"}",
+        "timestamp": "2025-05-28T14:22:53.347Z",
+        "success": 1,
+        "id": 29
       }
     }
   },
@@ -260,7 +268,7 @@
     "users": 2,
     "user_sessions": 2,
     "session_blacklist": 1,
-    "user_logs": 29
+    "user_logs": 30
   },
   "_tableSchemas": {
     "users": [
