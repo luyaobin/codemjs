@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web API 测试工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #2563eb;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 20px;
+            height: calc(100vh - 200px);
+        }
+        
+        .request-section, .response-section {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #4b5563;
+        }
+        
+        .url-input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        select, input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+        
+        select {
+            width: auto;
+            min-width: 100px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+        
+        .headers-container {
+            margin-bottom: 10px;
+        }
+        
+        .header-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .header-row input {
+            flex: 1;
+        }
+        
+        .header-row button {
+            padding: 8px 12px;
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .header-row button:hover {
+            background-color: #dc2626;
+        }
+        
+        .add-header-btn {
+            padding: 8px 16px;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .add-header-btn:hover {
+            background-color: #059669;
+        }
+        
+        .send-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .send-btn:hover {
+            background-color: #1d4ed8;
+        }
+        
+        .send-btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .response-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f3f4f6;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        
+        .status-code {
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .status-success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-redirect {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .status-error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .response-time {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .response-headers, .response-body {
+            margin-bottom: 15px;
+        }
+        
+        .response-headers h4, .response-body h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #374151;
+        }
+        
+        .code-block {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 15px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .empty-state {
+            text-align: center;
+            color: #9ca3af;
+            padding: 40px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e5e7eb;
+            border-top-color: #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            background-color: #fee2e2;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-size: 14px;
+            color: #6b7280;
+            transition: all 0.2s;
+        }
+        
+        .tab.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        
+        .tab:hover {
+            color: #2563eb;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Web API 测试工具</h1>
+            <p>快速测试和调试您的 REST API 接口</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="request-section">
+                <h2 class="section-title">请求配置</h2>
+                
+                <div class="form-group">
+                    <label>请求 URL</label>
+                    <div class="url-input-group">
+                        <select id="method">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="PUT">PUT</option>
+                            <option value="DELETE">DELETE</option>
+                            <option value="PATCH">PATCH</option>
+                            <option value="HEAD">HEAD</option>
+                            <option value="OPTIONS">OPTIONS</option>
+                        </select>
+                        <input type="text" id="url" placeholder="https://api.example.com/endpoint" value="https://jsonplaceholder.typicode.com/posts/1">
+                    </div>
+                </div>
+                
+                <div class="tabs">
+                    <button class="tab active" data-tab="headers">Headers</button>
+                    <button class="tab" data-tab="body">Body</button>
+                    <button class="tab" data-tab="auth">认证</button>
+                </div>
+                
+                <div class="tab-content active" id="headers-tab">
+                    <div class="form-group">
+                        <label>请求头</label>
+                        <div id="headers-container" class="headers-container"></div>
+                        <button class="add-header-btn" onclick="addHeader()">+ 添加请求头</button>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="body-tab">
+                    <div class="form-group">
+                        <label>请求体格式</label>
+                        <select id="content-type" onchange="updateContentType()">
+                            <option value="application/json">JSON</option>
+                            <option value="application/x-www-form-urlencoded">Form URL Encoded</option>
+                            <option value="multipart/form-data">Multipart Form</option>
+                            <option value="text/plain">Text</option>
+                            <option value="application/xml">XML</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>请求体</label>
+                        <textarea id="request-body" placeholder='{"key": "value"}'></textarea>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="auth-tab">
+                    <div class="form-group">
+                        <label>认证类型</label>
+                        <select id="auth-type" onchange="updateAuthFields()">
+                            <option value="none">无</option>
+                            <option value="bearer">Bearer Token</option>
+                            <option value="basic">Basic Auth</option>
+                            <option value="api-key">API Key</option>
+                        </select>
+                    </div>
+                    
+                    <div id="auth-fields"></div>
+                </div>
+                
+                <button class="send-btn" id="send-btn" onclick="sendRequest()">发送请求</button>
+            </div>
+            
+            <div class="response-section">
+                <h2 class="section-title">响应结果</h2>
+                <div id="response-content">
+                    <div class="empty-state">
+                        <p>还没有发送请求</p>
+                        <p style="margin-top: 10px; font-size: 14px;">配置您的请求并点击"发送请求"按钮</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let headerCount = 0;
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加默认请求头
+            addHeader('Content-Type', 'application/json');
+            addHeader('Accept', 'application/json');
+            
+            // 初始化标签页
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    switchTab(tabName);
+                });
+            });
+        });
+        
+        function switchTab(tabName) {
+            // 切换标签页
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            
+            // 切换内容
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+        }
+        
+        function addHeader(key = '', value = '') {
+            headerCount++;
+            const container = document.getElementById('headers-container');
+            const headerRow = document.createElement('div');
+            headerRow.className = 'header-row';
+            headerRow.id = `header-${headerCount}`;
+            
+            headerRow.innerHTML = `
+                <input type="text" placeholder="Key" value="${key}" id="header-key-${headerCount}">
+                <input type="text" placeholder="Value" value="${value}" id="header-value-${headerCount}">
+                <button onclick="removeHeader(${headerCount})">删除</button>
+            `;
+            
+            container.appendChild(headerRow);
+        }
+        
+        function removeHeader(id) {
+            const headerRow = document.getElementById(`header-${id}`);
+            if (headerRow) {
+                headerRow.remove();
+            }
+        }
+        
+        function updateContentType() {
+            const contentType = document.getElementById('content-type').value;
+            const bodyTextarea = document.getElementById('request-body');
+            
+            // 更新占位符文本
+            switch(contentType) {
+                case 'application/json':
+                    bodyTextarea.placeholder = '{"key": "value"}';
+                    break;
+                case 'application/x-www-form-urlencoded':
+                    bodyTextarea.placeholder = 'key1=value1&key2=value2';
+                    break;
+                case 'multipart/form-data':
+                    bodyTextarea.placeholder = '--boundary\nContent-Disposition: form-data; name="field"\n\nvalue';
+                    break;
+                case 'text/plain':
+                    bodyTextarea.placeholder = '输入纯文本内容';
+                    break;
+                case 'application/xml':
+                    bodyTextarea.placeholder = '<?xml version="1.0"?>\n<root>\n  <element>value</element>\n</root>';
+                    break;
+            }
+        }
+        
+        function updateAuthFields() {
+            const authType = document.getElementById('auth-type').value;
+            const authFields = document.getElementById('auth-fields');
+            
+            switch(authType) {
+                case 'none':
+                    authFields.innerHTML = '';
+                    break;
+                case 'bearer':
+                    authFields.innerHTML = `
+                        <div class="form-group">
+                            <label>Token</label>
+                            <input type="text" id="bearer-token" placeholder="输入您的 Bearer Token">
+                        </div>
+                    `;
+                    break;
+                case 'basic':
+                    authFields.innerHTML = `
+                        <div class="form-group">
+                            <label>用户名</label>
+                            <input type="text" id="basic-username" placeholder="用户名">
+                        </div>
+                        <div class="form-group">
+                            <label>密码</label>
+                            <input type="password" id="basic-password" placeholder="密码">
+                        </div>
+                    `;
+                    break;
+                case 'api-key':
+                    authFields.innerHTML = `
+                        <div class="form-group">
+                            <label>API Key 名称</label>
+                            <input type="text" id="api-key-name" placeholder="例如: X-API-Key">
+                        </div>
+                        <div class="form-group">
+                            <label>API Key 值</label>
+                            <input type="text" id="api-key-value" placeholder="您的 API Key">
+                        </div>
+                    `;
+                    break;
+            }
+        }
+        
+        function getHeaders() {
+            const headers = {};
+            const headerRows = document.querySelectorAll('.header-row');
+            
+            headerRows.forEach(row => {
+                const keyInput = row.querySelector('input[placeholder="Key"]');
+                const valueInput = row.querySelector('input[placeholder="Value"]');
+                
+                if (keyInput && valueInput && keyInput.value.trim()) {
+                    headers[keyInput.value.trim()] = valueInput.value.trim();
+                }
+            });
+            
+            // 添加认证头
+            const authType = document.getElementById('auth-type').value;
+            switch(authType) {
+                case 'bearer':
+                    const token = document.getElementById('bearer-token')?.value;
+                    if (token) {
+                        headers['Authorization'] = `Bearer ${token}`;
+                    }
+                    break;
+                case 'basic':
+                    const username = document.getElementById('basic-username')?.value;
+                    const password = document.getElementById('basic-password')?.value;
+                    if (username && password) {
+                        const credentials = btoa(`${username}:${password}`);
+                        headers['Authorization'] = `Basic ${credentials}`;
+                    }
+                    break;
+                case 'api-key':
+                    const keyName = document.getElementById('api-key-name')?.value;
+                    const keyValue = document.getElementById('api-key-value')?.value;
+                    if (keyName && keyValue) {
+                        headers[keyName] = keyValue;
+                    }
+                    break;
+            }
+            
+            return headers;
+        }
+        
+        async function sendRequest() {
+            const url = document.getElementById('url').value.trim();
+            const method = document.getElementById('method').value;
+            const body = document.getElementById('request-body').value;
+            const contentType = document.getElementById('content-type').value;
+            
+            if (!url) {
+                alert('请输入请求 URL');
+                return;
+            }
+            
+            const sendBtn = document.getElementById('send-btn');
+            const responseContent = document.getElementById('response-content');
+            
+            // 显示加载状态
+            sendBtn.disabled = true;
+            sendBtn.textContent = '发送中...';
+            responseContent.innerHTML = '<div class="loading"><div class="spinner"></div><p style="margin-top: 20px;">正在发送请求...</p></div>';
+            
+            const startTime = Date.now();
+            
+            try {
+                const headers = getHeaders();
+                
+                // 设置请求选项
+                const options = {
+                    method: method,
+                    headers: headers
+                };
+                
+                // 添加请求体（如果需要）
+                if (['POST', 'PUT', 'PATCH'].includes(method) && body) {
+                    if (!headers['Content-Type'] && contentType) {
+                        headers['Content-Type'] = contentType;
+                    }
+                    options.body = body;
+                }
+                
+                const response = await fetch(url, options);
+                const responseTime = Date.now() - startTime;
+                
+                // 获取响应头
+                const responseHeaders = {};
+                response.headers.forEach((value, key) => {
+                    responseHeaders[key] = value;
+                });
+                
+                // 获取响应体
+                const contentTypeHeader = response.headers.get('content-type');
+                let responseBody;
+                let bodyType = 'text';
+                
+                if (contentTypeHeader?.includes('application/json')) {
+                    responseBody = await response.json();
+                    bodyType = 'json';
+                } else if (contentTypeHeader?.includes('text/html')) {
+                    responseBody = await response.text();
+                    bodyType = 'html';
+                } else if (contentTypeHeader?.includes('application/xml') || contentTypeHeader?.includes('text/xml')) {
+                    responseBody = await response.text();
+                    bodyType = 'xml';
+                } else {
+                    responseBody = await response.text();
+                }
+                
+                // 显示响应
+                displayResponse({
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: responseHeaders,
+                    body: responseBody,
+                    bodyType: bodyType,
+                    time: responseTime
+                });
+                
+            } catch (error) {
+                responseContent.innerHTML = `
+                    <div class="error-message">
+                        <strong>请求失败</strong><br>
+                        ${error.message}
+                    </div>
+                `;
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.textContent = '发送请求';
+            }
+        }
+        
+        function displayResponse(response) {
+            const responseContent = document.getElementById('response-content');
+            
+            // 确定状态码颜色
+            let statusClass = 'status-success';
+            if (response.status >= 300 && response.status < 400) {
+                statusClass = 'status-redirect';
+            } else if (response.status >= 400) {
+                statusClass = 'status-error';
+            }
+            
+            // 格式化响应体
+            let formattedBody = response.body;
+            if (response.bodyType === 'json') {
+                try {
+                    formattedBody = JSON.stringify(response.body, null, 2);
+                } catch (e) {
+                    formattedBody = response.body;
+                }
+            }
+            
+            responseContent.innerHTML = `
+                <div class="response-meta">
+                    <div>
+                        <span class="status-code ${statusClass}">${response.status} ${response.statusText}</span>
+                    </div>
+                    <div class="response-time">
+                        响应时间: ${response.time}ms
+                    </div>
+                </div>
+                
+                <div class="response-headers">
+                    <h4>响应头</h4>
+                    <div class="code-block">
+                        ${formatHeaders(response.headers)}
+                    </div>
+                </div>
+                
+                <div class="response-body">
+                    <h4>响应体</h4>
+                    <div class="code-block">
+                        <pre>${escapeHtml(formattedBody)}</pre>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function formatHeaders(headers) {
+            return Object.entries(headers)
+                .map(([key, value]) => `<strong>${escapeHtml(key)}:</strong> ${escapeHtml(value)}`)
+                .join('\n');
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
