@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2025-05-28T13:34:46.926Z",
+  "totalRecords": 4,
+  "summary": {
+    "averageAge": 29.5,
+    "cities": [
+      "北京",
+      "上海",
+      "广州",
+      "深圳"
+    ],
+    "processedCount": 4
+  },
+  "details": [
+    {
+      "id": 1,
+      "content": {
+        "name": "张三",
+        "age": 25,
+        "city": "北京"
+      },
+      "timestamp": "2025-05-28T13:34:46.925Z",
+      "processed": true,
+      "processedAt": "2025-05-28T13:34:46.926Z"
+    },
+    {
+      "id": 2,
+      "content": {
+        "name": "李四",
+        "age": 30,
+        "city": "上海"
+      },
+      "timestamp": "2025-05-28T13:34:46.926Z",
+      "processed": true,
+      "processedAt": "2025-05-28T13:34:46.926Z"
+    },
+    {
+      "id": 3,
+      "content": {
+        "name": "王五",
+        "age": 28,
+        "city": "广州"
+      },
+      "timestamp": "2025-05-28T13:34:46.926Z",
+      "processed": true,
+      "processedAt": "2025-05-28T13:34:46.926Z"
+    },
+    {
+      "id": 4,
+      "content": {
+        "name": "赵六",
+        "age": 35,
+        "city": "深圳"
+      },
+      "timestamp": "2025-05-28T13:34:46.926Z",
+      "processed": true,
+      "processedAt": "2025-05-28T13:34:46.926Z"
+    }
+  ]
+}

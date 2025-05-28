@@ -1,0 +1,24 @@
+{"timestamp":"2025-05-28T13:34:46.924Z","level":"INFO","message":"应用初始化完成","data":null}
+{"timestamp":"2025-05-28T13:34:46.924Z","level":"INFO","message":"=== 同步应用开始运行 ===","data":null}
+{"timestamp":"2025-05-28T13:34:46.925Z","level":"INFO","message":"初始化目录结构","data":null}
+{"timestamp":"2025-05-28T13:34:46.925Z","level":"INFO","message":"创建目录: ./data","data":null}
+{"timestamp":"2025-05-28T13:34:46.925Z","level":"INFO","message":"创建目录: ./logs","data":null}
+{"timestamp":"2025-05-28T13:34:46.925Z","level":"INFO","message":"创建目录: ./temp","data":null}
+{"timestamp":"2025-05-28T13:34:46.925Z","level":"INFO","message":"开始处理用户数据","data":null}
+{"timestamp":"2025-05-28T13:34:46.925Z","level":"DEBUG","message":"添加用户数据","data":{"name":"张三","age":25,"city":"北京"}}
+{"timestamp":"2025-05-28T13:34:46.926Z","level":"DEBUG","message":"添加用户数据","data":{"name":"李四","age":30,"city":"上海"}}
+{"timestamp":"2025-05-28T13:34:46.926Z","level":"DEBUG","message":"添加用户数据","data":{"name":"王五","age":28,"city":"广州"}}
+{"timestamp":"2025-05-28T13:34:46.926Z","level":"DEBUG","message":"添加用户数据","data":{"name":"赵六","age":35,"city":"深圳"}}
+{"timestamp":"2025-05-28T13:34:46.926Z","level":"INFO","message":"找到年龄小于30的用户: 2人","data":null}
+{"timestamp":"2025-05-28T13:34:46.926Z","level":"INFO","message":"生成数据报告","data":null}
+{"timestamp":"2025-05-28T13:34:46.926Z","level":"INFO","message":"报告已保存到: ./data/report.json","data":null}
+{"timestamp":"2025-05-28T13:34:46.927Z","level":"INFO","message":"开始数据备份","data":null}
+{"timestamp":"2025-05-28T13:34:46.927Z","level":"INFO","message":"数据备份完成: ./temp/backup_1748439286927","data":null}
+{"timestamp":"2025-05-28T13:34:46.927Z","level":"INFO","message":"清理临时文件","data":null}
+{"timestamp":"2025-05-28T13:34:46.927Z","level":"INFO","message":"临时目录包含 1 个项目","data":null}
+{"timestamp":"2025-05-28T13:34:46.927Z","level":"INFO","message":"=== 同步应用运行完成 ===","data":null}
+{"timestamp":"2025-05-28T13:34:46.927Z","level":"INFO","message":"演示重试机制","data":null}
+{"timestamp":"2025-05-28T13:34:47.927Z","level":"INFO","message":"重试成功","data":{"result":"成功 (第 3 次尝试)","totalAttempts":3}}
+{"timestamp":"2025-05-28T13:34:47.927Z","level":"INFO","message":"演示文件操作","data":null}
+{"timestamp":"2025-05-28T13:34:47.927Z","level":"INFO","message":"文件信息","data":{"path":"./temp/test.txt","size":74,"sizeFormatted":"74.00 B","isFile":true,"isDirectory":false,"created":"2025-05-28T13:34:47.926Z","modified":"2025-05-28T13:34:47.926Z","accessed":"2025-05-28T13:34:47.926Z"}}
+{"timestamp":"2025-05-28T13:34:47.928Z","level":"INFO","message":"文件内容读取成功","data":{"length":26}}
