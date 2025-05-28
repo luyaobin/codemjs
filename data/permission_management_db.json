@@ -1,0 +1,895 @@
+{
+  "_tables": {
+    "permissions": {
+      "1": {
+        "name": "查看用户",
+        "code": "user.view",
+        "description": "查看用户信息",
+        "module": "user",
+        "action": "view",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 1,
+        "isActive": 1
+      },
+      "2": {
+        "name": "创建用户",
+        "code": "user.create",
+        "description": "创建新用户",
+        "module": "user",
+        "action": "create",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 2,
+        "isActive": 1
+      },
+      "3": {
+        "name": "编辑用户",
+        "code": "user.edit",
+        "description": "编辑用户信息",
+        "module": "user",
+        "action": "edit",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 3,
+        "isActive": 1
+      },
+      "4": {
+        "name": "删除用户",
+        "code": "user.delete",
+        "description": "删除用户",
+        "module": "user",
+        "action": "delete",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 4,
+        "isActive": 1
+      },
+      "5": {
+        "name": "重置密码",
+        "code": "user.reset_password",
+        "description": "重置用户密码",
+        "module": "user",
+        "action": "reset_password",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 5,
+        "isActive": 1
+      },
+      "6": {
+        "name": "查看角色",
+        "code": "role.view",
+        "description": "查看角色信息",
+        "module": "role",
+        "action": "view",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 6,
+        "isActive": 1
+      },
+      "7": {
+        "name": "创建角色",
+        "code": "role.create",
+        "description": "创建新角色",
+        "module": "role",
+        "action": "create",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 7,
+        "isActive": 1
+      },
+      "8": {
+        "name": "编辑角色",
+        "code": "role.edit",
+        "description": "编辑角色信息",
+        "module": "role",
+        "action": "edit",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 8,
+        "isActive": 1
+      },
+      "9": {
+        "name": "删除角色",
+        "code": "role.delete",
+        "description": "删除角色",
+        "module": "role",
+        "action": "delete",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 9,
+        "isActive": 1
+      },
+      "10": {
+        "name": "分配角色",
+        "code": "role.assign",
+        "description": "为用户分配角色",
+        "module": "role",
+        "action": "assign",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 10,
+        "isActive": 1
+      },
+      "11": {
+        "name": "查看权限",
+        "code": "permission.view",
+        "description": "查看权限信息",
+        "module": "permission",
+        "action": "view",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 11,
+        "isActive": 1
+      },
+      "12": {
+        "name": "创建权限",
+        "code": "permission.create",
+        "description": "创建新权限",
+        "module": "permission",
+        "action": "create",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 12,
+        "isActive": 1
+      },
+      "13": {
+        "name": "编辑权限",
+        "code": "permission.edit",
+        "description": "编辑权限信息",
+        "module": "permission",
+        "action": "edit",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 13,
+        "isActive": 1
+      },
+      "14": {
+        "name": "删除权限",
+        "code": "permission.delete",
+        "description": "删除权限",
+        "module": "permission",
+        "action": "delete",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 14,
+        "isActive": 1
+      },
+      "15": {
+        "name": "分配权限",
+        "code": "permission.assign",
+        "description": "为角色分配权限",
+        "module": "permission",
+        "action": "assign",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 15,
+        "isActive": 1
+      },
+      "16": {
+        "name": "查看日志",
+        "code": "system.view_logs",
+        "description": "查看系统日志",
+        "module": "system",
+        "action": "view_logs",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 16,
+        "isActive": 1
+      },
+      "17": {
+        "name": "系统配置",
+        "code": "system.config",
+        "description": "修改系统配置",
+        "module": "system",
+        "action": "config",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 17,
+        "isActive": 1
+      },
+      "18": {
+        "name": "数据备份",
+        "code": "system.backup",
+        "description": "备份系统数据",
+        "module": "system",
+        "action": "backup",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 18,
+        "isActive": 1
+      },
+      "19": {
+        "name": "数据恢复",
+        "code": "system.restore",
+        "description": "恢复系统数据",
+        "module": "system",
+        "action": "restore",
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 19,
+        "isActive": 1
+      }
+    },
+    "roles": {
+      "1": {
+        "name": "超级管理员",
+        "code": "super_admin",
+        "description": "拥有所有权限的超级管理员",
+        "level": 100,
+        "isSystem": true,
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 1,
+        "isActive": 1
+      },
+      "2": {
+        "name": "系统管理员",
+        "code": "admin",
+        "description": "系统管理员，拥有大部分管理权限",
+        "level": 80,
+        "isSystem": true,
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 2,
+        "isActive": 1
+      },
+      "3": {
+        "name": "用户管理员",
+        "code": "user_admin",
+        "description": "用户管理员，负责用户相关操作",
+        "level": 60,
+        "isSystem": true,
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 3,
+        "isActive": 1
+      },
+      "4": {
+        "name": "普通用户",
+        "code": "user",
+        "description": "普通用户，基础权限",
+        "level": 10,
+        "isSystem": true,
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 4,
+        "isActive": 1
+      },
+      "5": {
+        "name": "VIP用户",
+        "code": "vip",
+        "description": "VIP用户，扩展权限",
+        "level": 20,
+        "isSystem": true,
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 5,
+        "isActive": 1
+      },
+      "6": {
+        "name": "访客",
+        "code": "guest",
+        "description": "访客用户，只读权限",
+        "level": 1,
+        "isSystem": true,
+        "createdAt": "2025-05-28T15:06:31.034Z",
+        "updatedAt": "2025-05-28T15:06:31.034Z",
+        "id": 6,
+        "isActive": 1
+      }
+    },
+    "role_permissions": {
+      "1": {
+        "id": 1,
+        "roleId": 19,
+        "permissionId": 2025
+      },
+      "2": {
+        "id": 2,
+        "roleId": 18,
+        "permissionId": 2025
+      },
+      "3": {
+        "id": 3,
+        "roleId": 11,
+        "permissionId": 2025
+      },
+      "4": {
+        "id": 4,
+        "roleId": 1,
+        "permissionId": 2025
+      },
+      "5": {
+        "id": 5,
+        "roleId": 11,
+        "permissionId": 2025
+      }
+    },
+    "user_roles": {},
+    "user_permissions": {
+      "1": {
+        "id": 1,
+        "userId": 2,
+        "permissionId": 0,
+        "type": 1,
+        "'deny'))": "2025-05-28T15:06:31.039Z",
+        "assignedBy": null,
+        "assignedAt": "测试权限拒绝"
+      },
+      "2": {
+        "id": 2,
+        "userId": 1,
+        "permissionId": 0,
+        "type": 1,
+        "'deny'))": "2025-05-28T15:06:31.039Z",
+        "assignedBy": null,
+        "assignedAt": "测试冲突"
+      }
+    },
+    "permission_logs": {
+      "1": {
+        "userId": 1,
+        "operatorId": 1,
+        "action": "assign_permission_to_user",
+        "targetType": "user",
+        "targetId": 1,
+        "details": "{\"permissionId\":1,\"permissionName\":\"查看用户\",\"type\":\"grant\",\"reason\":\"测试直接权限分配\"}",
+        "ipAddress": null,
+        "userAgent": null,
+        "createdAt": "2025-05-28T15:06:31.039Z",
+        "id": 1
+      },
+      "2": {
+        "userId": 1,
+        "operatorId": 1,
+        "action": "assign_permission_to_user",
+        "targetType": "user",
+        "targetId": 1,
+        "details": "{\"permissionId\":2,\"permissionName\":\"查看用户\",\"type\":\"deny\",\"reason\":\"测试权限拒绝\"}",
+        "ipAddress": null,
+        "userAgent": null,
+        "createdAt": "2025-05-28T15:06:31.039Z",
+        "id": 2
+      },
+      "3": {
+        "userId": 2,
+        "operatorId": 1,
+        "action": "assign_permission_to_user",
+        "targetType": "user",
+        "targetId": 2,
+        "details": "{\"permissionId\":1,\"permissionName\":\"查看用户\",\"type\":\"deny\",\"reason\":\"测试冲突\"}",
+        "ipAddress": null,
+        "userAgent": null,
+        "createdAt": "2025-05-28T15:06:31.039Z",
+        "id": 3
+      }
+    }
+  },
+  "_autoIncrement": {
+    "permissions": 20,
+    "roles": 7,
+    "role_permissions": 1,
+    "user_roles": 1,
+    "user_permissions": 1,
+    "permission_logs": 4
+  },
+  "_tableSchemas": {
+    "permissions": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "name",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "code",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "description",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "module",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "action",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "resource",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "isActive",
+        "type": "BOOLEAN",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": 1,
+        "hasDefault": true
+      },
+      {
+        "name": "createdAt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      }
+    ],
+    "roles": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "name",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "code",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "description",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "level",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": 0,
+        "hasDefault": true
+      },
+      {
+        "name": "isActive",
+        "type": "BOOLEAN",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": 1,
+        "hasDefault": true
+      },
+      {
+        "name": "isSystem",
+        "type": "BOOLEAN",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": 0,
+        "hasDefault": true
+      },
+      {
+        "name": "createdAt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "updatedAt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      }
+    ],
+    "role_permissions": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "roleId",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "permissionId",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "grantedBy",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "grantedAt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "UNIQUE(roleId",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "permissionId)",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      }
+    ],
+    "user_roles": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "userId",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "roleId",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "assignedBy",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "assignedAt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "expiresAt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "isActive",
+        "type": "BOOLEAN",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": 1,
+        "hasDefault": true
+      },
+      {
+        "name": "UNIQUE(userId",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "roleId)",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      }
+    ],
+    "user_permissions": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "userId",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "permissionId",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "type",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "'deny'))",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "assignedBy",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "assignedAt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "expiresAt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "reason",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "UNIQUE(userId",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "permissionId)",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      }
+    ],
+    "permission_logs": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "primaryKey": true,
+        "autoIncrement": true,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "userId",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "operatorId",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "action",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "targetType",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "targetId",
+        "type": "INTEGER",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "details",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "ipAddress",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "userAgent",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": false,
+        "defaultValue": null,
+        "hasDefault": false
+      },
+      {
+        "name": "createdAt",
+        "type": "TEXT",
+        "primaryKey": false,
+        "autoIncrement": false,
+        "notNull": true,
+        "defaultValue": null,
+        "hasDefault": false
+      }
+    ]
+  }
+}
