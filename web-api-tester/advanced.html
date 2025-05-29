@@ -488,6 +488,7 @@
             background-color: #1d4ed8;
         }
     </style>
+    <script src="/auth.js"></script>
 </head>
 <body>
     <div class="container">
@@ -630,6 +631,13 @@
     </div>
     
     <script>
+        // 认证检查
+        const currentUser = window.authUtils.initAuth();
+        if (!currentUser) {
+            // 如果认证失败，initAuth会自动跳转到登录页
+            // 这里不需要额外处理
+        }
+        
         let headerCount = 0;
         let paramCount = 0;
         let requestHistory = [];
